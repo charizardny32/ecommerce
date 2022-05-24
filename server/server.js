@@ -27,6 +27,8 @@ app.use('/', express.static(path.resolve(__dirname, '../dist')))
 //Use apiRouter for /api endpoint
 app.use('/api', apiRouter);
 
+app.get('/', (req, res) => res.status(200).sendFile(path.join(__dirname, '../index.html')));
+
 // Route to test error handler, can be removed
 app.get('/forcederror', (req, res, next) => {
   return next(generateError('This is a forced error'));
