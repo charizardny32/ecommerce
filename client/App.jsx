@@ -1,9 +1,11 @@
+import { PayPalButtons } from "@paypal/react-paypal-js";
+
 
 function App() {
-
+	
 	return (
 		<>
-			<button>A button</button>
+			<PayPalButtons fundingSource="paypal" />
 		</>
 	);
 }

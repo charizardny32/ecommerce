@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@paypal/react-paypal-js": "^7.8.0",
     "express": "^4.18.1",
     "react": "^18.1.0",
     "react-dom": "^18.1.0"
