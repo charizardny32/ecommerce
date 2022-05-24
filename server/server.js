@@ -1,15 +1,17 @@
 const path = require('path');
 const express = require('express');
 const app = express();
-const pg = require('pg');
+// const pg = require('pg');
 
-require('dotenv').config();
+// require('dotenv').config();
 
-// connect to the PostgresQL database
-pg.connect(process.env.DB, {useNewUrlParser: true, useUnifiedTopology: true });
-pg.connection.once('open', () => {
-  console.log(`Connected to ${pg.connection.name}`);
-})
+// // connect to the PostgresQL database
+// pg.connect(process.env.DB, {useNewUrlParser: true, useUnifiedTopology: true });
+// pg.connection.once('open', () => {
+//   console.log(`Connected to ${pg.connection.name}`);
+// })
+
+app.use(express.json());
 
 const apiRouter = require('./routes/apiRouter');
 
