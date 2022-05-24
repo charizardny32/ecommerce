@@ -1,11 +1,10 @@
-<<<<<<< HEAD
 import React from 'react';
 import { HashRouter, Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar.jsx';
-import HomePage from './components/Homepage.jsx';
-import ProductPage from './components/ProductPage.jsx';
-import Checkout from './components/Checkout.jsx';
-import Confirmation from './components/Confirm.jsx';
+// import Navbar from './components/Navbar';
+// import HomePage from './components/Homepage';
+// import ProductPage from './components/ProductPage';
+// import Checkout from './components/Checkout';
+// import Confirmation from './components/Confirm';
 
 
 // set up App functional component
@@ -15,8 +14,9 @@ const App = () => {
 
   return (
     <div className="App">
-      <HashRouter>
-        {/* test */}
+      <button>Test Button</button>
+      {/* <HashRouter>
+
         <button>A button</button>
         <Navbar />
         <Routes>
@@ -25,20 +25,9 @@ const App = () => {
           <Route path = '/checkout' element={<Checkout />} />
           <Route path = '/confirmation' element={<Confirmation />} />
         </Routes>
-      </HashRouter>
+      </HashRouter> */}
     </div>
   );
 };
-=======
-
-function App() {
-
-	return (
-		<>
-			<button>A button</button>
-		</>
-	);
-}
->>>>>>> dev
 
 export default App;

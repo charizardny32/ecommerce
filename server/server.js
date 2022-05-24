@@ -14,6 +14,8 @@ function generateError(err = 'An  error ocurred', log = 'Express encountered a m
 // Serve static files from the client directory
 app.use('/', express.static(path.resolve(__dirname,'../client')));
 
+app.get('/', (req, res) => res.status(200).sendFile(path.join(__dirname, '../index.html')));
+
 // Route to test error handler, can be removed
 app.get('/forcederror', (req, res, next) => {
   return next(generateError('This is a forced error'));
