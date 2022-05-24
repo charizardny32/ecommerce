@@ -11,8 +11,12 @@ function generateError(err = 'An  error ocurred', log = 'Express encountered a m
   };
 }
 
-// Serve static files from the client directory
-app.use('/', express.static(path.resolve(__dirname,'../client')));
+
+// app.get('/', (req, res) => {
+//   res.sendFile(path.resolve(__dirname, '../dist/index.html'));
+// });
+
+app.use('/', express.static(path.resolve(__dirname, '../dist')))
 
 // Route to test error handler, can be removed
 app.get('/forcederror', (req, res, next) => {
@@ -20,7 +24,7 @@ app.get('/forcederror', (req, res, next) => {
 });
 
 app.get('*', (req, res) => {
-  return res.redirect('/404.html');
+  return res.sendFile(path.resolve(__dirname, '../client/404.html'));
 });
 
 // GLOBAL ERROR HANDLER

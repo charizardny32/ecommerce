@@ -16,7 +16,7 @@
   },
   "scripts": {
     "test": "jest --verbose scripts/test.js",
-    "dev": "nodemon server/server.js",
+    "start": "nodemon server/server.js",
     "vite": "vite",
     "build": "vite build",
     "preview": "vite preview"
