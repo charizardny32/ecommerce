@@ -22,9 +22,7 @@ function generateError(err = 'An  error ocurred', log = 'Express encountered a m
   };
 }
 
-// Serve static files from the client directory
-app.use('/', express.static(path.resolve(__dirname,'../')));
-app.use('/', express.static(path.resolve(__dirname,'../client')));
+app.use('/', express.static(path.resolve(__dirname, '../dist')))
 
 //Use apiRouter for /api endpoint
 app.use('/api', apiRouter);
@@ -35,7 +33,7 @@ app.get('/forcederror', (req, res, next) => {
 });
 
 app.get('*', (req, res) => {
-  return res.redirect('/404.html');
+  return res.sendFile(path.resolve(__dirname, '../client/404.html'));
 });
 
 // GLOBAL ERROR HANDLER
