@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from 'react';
 import { HashRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar.jsx';
@@ -28,5 +29,16 @@ const App = () => {
     </div>
   );
 };
+=======
+
+function App() {
+
+	return (
+		<>
+			<button>A button</button>
+		</>
+	);
+}
+>>>>>>> dev
 
 export default App;
