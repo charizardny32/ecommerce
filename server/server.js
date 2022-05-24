@@ -1,6 +1,15 @@
 const path = require('path');
 const express = require('express');
 const app = express();
+const pg = require('pg');
+
+require('dotenv').config();
+
+// connect to the PostgresQL database
+pg.connect(process.env.DB, {useNewUrlParser: true, useUnifiedTopology: true });
+pg.connection.once('open', () => {
+  console.log(`Connected to ${pg.connection.name}`);
+})
 
 const apiRouter = require('./routes/apiRouter');
 
@@ -49,6 +58,10 @@ app.use((err, req, res, next) => {
     .status(error.status)
     .json(error.message);
 });
+
+
+
+
 
 const PORT = 4000;
 app.listen(PORT, () => console.log(`Listening on port ${PORT}...`));
