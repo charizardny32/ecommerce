@@ -5,11 +5,6 @@ const pg = require('pg');
 
 require('dotenv').config();
 
-// connect to the PostgresQL database
-pg.connect(process.env.DB, {useNewUrlParser: true, useUnifiedTopology: true });
-pg.connection.once('open', () => {
-  console.log(`Connected to ${pg.connection.name}`);
-})
 
 const apiRouter = require('./routes/apiRouter');
 
