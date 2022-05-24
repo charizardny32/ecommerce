@@ -2,6 +2,8 @@ const path = require('path');
 const express = require('express');
 const app = express();
 
+const apiRouter = require('./routes/apiRouter');
+
 // Helper function for creating error objects with optional properties
 function generateError(err = 'An  error ocurred', log = 'Express encountered a middleware error', status = 400) {
   return {
@@ -12,7 +14,11 @@ function generateError(err = 'An  error ocurred', log = 'Express encountered a m
 }
 
 // Serve static files from the client directory
+app.use('/', express.static(path.resolve(__dirname,'../')));
 app.use('/', express.static(path.resolve(__dirname,'../client')));
+
+//Use apiRouter for /api endpoint
+app.use('/api', apiRouter);
 
 // Route to test error handler, can be removed
 app.get('/forcederror', (req, res, next) => {
