@@ -1,3 +1,6 @@
+-- To run this code, cd to the db directory, and use:
+-- psql -d postgres://zvtisarc:KEw1fVg5mh0tzCAFzlOtTugNT5as090_@fanny.db.elephantsql.com/zvtisarc -f ecommerce.sql
+
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET idle_in_transaction_session_timeout = 0;
@@ -9,9 +12,11 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
-CREATE TABLE product(
-  "product_id" integer NOT NULL,
+CREATE TABLE public.product(
+  "product_id" bigint NOT NULL,
   "book_title" varchar NOT NULL,
+  "author" varchar NOT NULL,
+  "year" varchar NOT NULL,
   "price" bigint NOT NULL,
   "description" varchar,
   CONSTRAINT "product_pk" PRIMARY KEY ("product_id")
@@ -19,7 +24,7 @@ CREATE TABLE product(
   OIDS = FALSE
 );
 
-CREATE TABLE customer(
+CREATE TABLE public.customer(
   "customer_id" serial NOT NULL,
   "name" varchar NOT NULL,
   "email" varchar NOT NULL,
@@ -29,19 +34,17 @@ CREATE TABLE customer(
   OIDS = FALSE
 );
 
-CREATE TABLE order(
-  "order_id" serial NOT NULL,
-  -- "product_id" integer NOT NULL,
-  -- "customer_id" integer NOT NULL,
+CREATE TABLE public.ord(
+  "ord_id" serial NOT NULL,
   "quantity" integer NOT NULL,
   "total" bigint NOT NULL,
-  "date" date
-  CONSTRAINT "order_pk" PRIMARY KEY ("order_id")
+  "date" date,
+  CONSTRAINT "ord_pk" PRIMARY KEY ("ord_id")
 )WITH (
   OIDS = FALSE
 );
 
--- CREATE TABLE products.orders(
+-- CREATE TABLE products.ord(
 
 -- )WITH (
 --   OIDS = FALSE
@@ -50,5 +53,5 @@ CREATE TABLE order(
 
 -- ALTER TABLE product ADD CONSTRAINT
 -- ALTER TABLE customer ADD CONSTRAINT
-ALTER TABLE order ADD CONSTRAINT "order_fk0" FOREIGN KEY ("ordered_by") REFERENCES  customer("customer_id");
-ALTER TABLE order ADD CONSTRAINT "order_fk1" FOREIGN KEY ("product") REFERENCES  product("product_id");
+ALTER TABLE public.ord ADD CONSTRAINT "ord_fk0" FOREIGN KEY ("ord_by") REFERENCES  customer("customer_id");
+ALTER TABLE public.ord ADD CONSTRAINT "ord_fk1" FOREIGN KEY ("product") REFERENCES  product("product_id");
