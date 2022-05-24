@@ -5,7 +5,7 @@ import HomePage from './components/Homepage';
 import ProductPage from './components/ProductPage';
 import Checkout from './components/Checkout';
 import Confirmation from './components/Confirm';
-
+// import stylesheet from './assets/style/styles.css';
 
 // set up App functional component
 const App = () => {
