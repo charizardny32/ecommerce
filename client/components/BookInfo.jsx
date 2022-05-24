@@ -2,6 +2,7 @@ import React from 'react';
 import calvin_cover from '../assets/calvin-book.jpeg';
 import { Link } from 'react-router-dom';
 
+
 const BookInfo = () => {
 
   return (
