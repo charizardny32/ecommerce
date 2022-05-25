@@ -1,28 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import { PayPalButtons } from "@paypal/react-paypal-js";
 
-const Checkout = () => {
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    fetch("/api/books")
-      // .then(res => res.json())
-      .then(res => console.log("checkout:", res));
-  }, []);
-
-  // const fetchProducts = async () => {
-  //   try {
-  //     const res = await fetch('api/books');
-  //     const res_1 = await res.json();
-  //     console.log(res_1);
-  //     setProducts(res_1.data);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // }
+const Checkout = ({ cart }) => {
+  const style = { color: "silver", shape: "pill" };
 
   return (
-    <div>
-      <h1>Checkout Page!!!</h1>
+    <div className="flex-col justify-center">
+      <div>
+        <PayPalButtons
+          style={style}
+          fundingSource="paypal"
+          createOrder={(data, actions) => {
+            console.log("Paypal createOrder");
+            return actions.order.create({
+              purchase_units: [{ amount: { value: "101.99" } }]
+            });
+          }}
+          onApprove={(data, actions) => {
+            console.log(cart);
+            // capture buyer data actions.order.capture()...
+            return;
+          }}
+          onCancel={() => console.log("Paypal onCancel")}
+          onError={error => console.log("Paypal onError", error)}
+        />
+      </div>
     </div>
   );
 };

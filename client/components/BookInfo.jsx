@@ -1,5 +1,5 @@
 import React from 'react';
-import calvin_cover from '../assets/calvin-book.jpeg';
+// import calvin_cover from '../assets/calvin-book.jpeg'; 
 import { Link } from 'react-router-dom';
 
 // props: book_title, author, image, price, product_id

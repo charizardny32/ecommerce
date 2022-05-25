@@ -1,43 +1,29 @@
 import React, { useState, useEffect } from 'react';
-import { HashRouter, Routes, Route } from 'react-router-dom';
-import NavBar from './components/Navbar';
-import HomePage from './components/Homepage';
-import ProductPage from './components/ProductPage';
+import { Route, Routes } from 'react-router-dom';
+
+import Navbar from './components/Navbar';
 import Checkout from './components/Checkout';
-import Confirmation from './components/Confirm';
+import ProductPage from './components/ProductPage';
 
 
-// set up App functional component
 const App = () => {
+  const [products, setProducts] = useState([]);
+  const [count, setCount] = useState(0);
 
-  const [cartQuantity, setCartQuantity] = useState(0);
-  console.log(cartQuantity);
-  const test = 'test';
-  console.log(test);
-  // space for React Hooks
- 
-  
+  useEffect(() => {
+    fetch("/api/books")
+      .then(res => res.json())
+      .then(data => {console.log(data); setProducts(data);});
+  }, []);
   
   return (
     <div className="App">
-      <NavBar cartQuantity={cartQuantity}/>
-        <h1 className="font-bold text-2xl text-blue-900">
-          Hello PEOPLE from the App Page - heres the changes!{cartQuantity}{test}
-        </h1>
-      {test}
-      {cartQuantity}
-      <HomePage setCartQuantity={setCartQuantity}/>
-      <ProductPage setCartQuantity={setCartQuantity}/>
-      <Checkout />
-      <Confirmation />
-      {/* <HashRouter>
-        <Routes>
-          <Route path = '/' element={<HomePage />} />
-          <Route path = '/product' element={<ProductPage />} />
-          <Route path = '/checkout' element={<Checkout />} />
-          <Route path = '/confirmation' element={<Confirmation />} />
-        </Routes>
-      </HashRouter> */}
+      <Navbar count={count} />
+      <Routes>
+      
+        <Route path='/' element={<ProductPage products={products} setCount={setCount} count={count}/>} />
+        <Route path='/checkout' element={<Checkout />} />
+      </Routes>
     </div>
   );
 };

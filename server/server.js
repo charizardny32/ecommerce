@@ -24,7 +24,7 @@ function generateError(err = 'An  error ocurred', log = 'Express encountered a m
   };
 }
 
-app.use('/', express.static(path.resolve(__dirname, '../dist')))
+app.use('/', express.static(path.resolve(__dirname, '../dist')));
 
 //Use apiRouter for /api endpoint
 app.use('/api', apiRouter);

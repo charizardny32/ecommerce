@@ -1,36 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import BookInfo from './BookInfo';
+import ISBN9781480355453 from '../assets/9781480355453.jpg';
+import ISBN9781495024429 from '../assets/9781495024429.jpg';
+import ISBN9781480355460 from '../assets/9781480355460.jpg';
+import ISBN9781493061174 from '../assets/9781493061174.jpg';
 
-const HomePage = (props) => {
-  const { setCartQuantity } = props;
-setCartQuantity(1);
-
-  // code to generate array of BookInfo components using a loop
-  const [books, setProducts] = useState([]);
-
-  useEffect(() => {
-    fetchProducts();
-  }, []);
-
-  const fetchProducts = () => {
-    fetch('api/books')
-    .then(response => response.json())
-    .then(data => {
-      setProducts(data.data)
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-  }
+const HomePage = ({ products }) => {
 
   return (
     <div>
       <h1 className="text-3xl font-bold underline">
         Featured Products
       </h1>
-      <div>
-        {books}
-      </div>
+      { products.map((p) => (
+      <div key={p.product_id}>
+      <img src={p.product_id.jpg} />
+      <h3>{p.book_title}</h3>
+      <p>{p.author}</p>
+      </div>)) }
     </div> 
   );
 
