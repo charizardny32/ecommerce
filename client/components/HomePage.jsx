@@ -8,7 +8,8 @@ const HomePage = () => {
   return (
     <div>
       <BookInfo />
-    </div> 
+      <BookInfo />
+    </div>
   );
 
 };
