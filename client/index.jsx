@@ -1,10 +1,14 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
+import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 import App from './App';
-// import style sheet?
-import stylesheet from './assets/style/styles.css';
+import './index.css';
 
 const container = document.getElementById('app');
-console.log('inside index.jsx');
 const root = createRoot(container);
-root.render(<App />);
+
+root.render(
+  <PayPalScriptProvider options={{ "client-id": "test", currency: "USD" }}>
+    <App />
+  </PayPalScriptProvider>
+);
