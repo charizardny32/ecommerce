@@ -1,8 +1,8 @@
 import React from 'react';
 import cart_icon from '../assets/cart_icon.png';
 
-const NavBar = () => {
-
+const NavBar = (props) => {
+  console.log(props.cartQuantity)
 
   return (
     <div className='navBar'>

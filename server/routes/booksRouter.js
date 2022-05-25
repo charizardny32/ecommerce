@@ -53,7 +53,7 @@ const booksController = {
 
 // GET all books
 router.get('/', booksController.listBooks, (req, res) => {
-  res
+  return res
     .status(200)
     .json(res.locals.books);
 });
