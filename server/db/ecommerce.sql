@@ -19,6 +19,7 @@ CREATE TABLE public.product(
   "year" varchar NOT NULL,
   "price" bigint NOT NULL,
   "description" varchar,
+  "quantity" integer,
   CONSTRAINT "product_pk" PRIMARY KEY ("product_id")
 )WITH (
   OIDS = FALSE
