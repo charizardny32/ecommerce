@@ -1,14 +1,12 @@
 import React from 'react';
 
-const cartCounter = ({count}) => {
+const CartCounter = ({total}) => {
   
-
   return (
-    <div class="bg grey">
-      {count}
-      <h3>test {count}</h3>
+    <div className="bg grey">
+      <h3>${total}</h3>
     </div>
-  );
+    );
 };
 
-export default cartCounter;
+export default CartCounter;

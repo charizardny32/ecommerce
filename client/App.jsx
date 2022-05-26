@@ -4,11 +4,13 @@ import { Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Checkout from './components/Checkout';
 import ProductPage from './components/ProductPage';
+import BookInfo from './components/BookInfo';
 
 
 const App = () => {
   const [products, setProducts] = useState([]);
-  const [count, setCount] = useState(0);
+  const [total, setTotal] = useState(0);
+  const [purchase, setPurchase] = useState([]);
 
   useEffect(() => {
     fetch("/api/books")
@@ -18,11 +20,12 @@ const App = () => {
   
   return (
     <div className="App">
-      <Navbar count={count} />
+      <Navbar total={total}/>
       <Routes>
       
-        <Route path='/' element={<ProductPage products={products} setCount={setCount} count={count}/>} />
-        <Route path='/checkout' element={<Checkout />} />
+        <Route path='/' element={<ProductPage products={products} setTotal={setTotal} total={total} purchase={purchase} setPurchase={setPurchase}/>} />
+        <Route exact path='/:id' element={<BookInfo products={products} />} />
+        <Route path='/checkout' element={<Checkout total={total} purchase={purchase}/>} />
       </Routes>
     </div>
   );

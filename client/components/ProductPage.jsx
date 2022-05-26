@@ -1,7 +1,7 @@
 import Card from "./Card";
 
 
-const ProductPage = ({ products, setCount, count }) => {
+const ProductPage = ({ products, setTotal, total, purchase, setPurchase }) => {
   return (
     <div className="flex justify-center m-2">
       {/* <h1>Product Page!!!</h1> */}
@@ -9,13 +9,17 @@ const ProductPage = ({ products, setCount, count }) => {
         {products.map(p => (
           <Card
             key={p.product_id}
+            ISBN={p.product_id}
             price={p.price}
             title={p.book_title}
+            description={p.description}
             author={p.author}
             image={p.cover_image}
             quantity={p.quantity}
-            setCount={setCount}
-            count={count}
+            setTotal={setTotal}
+            total={total}
+            purchase={purchase}
+            setPurchase={setPurchase}
           />
         ))}
       </div>
