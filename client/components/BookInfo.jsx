@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
 // import calvin_cover from '../assets/calvin-book.jpeg'; 
 import { Link } from 'react-router-dom';
+import AddToCartButton from './AddToCartButton';
 
 // props: book_title, author, image, price, product_id
-const BookInfo = ({ products }) => {
+const BookInfo = (props) => {
+  const { bookinfo, setTotal, ISBN, price, title, author, image, quantity, description, total, purchase, setPurchase, setBookinfo } = props; 
+  //console.log('info from BookInfo componenet:', bookinfo);
+  //console.log(setTotal);
   // const [data, setData] = useState([]);
 
   // useEffect(() => {
@@ -14,11 +18,13 @@ const BookInfo = ({ products }) => {
 
   return (
     <div className="max-w-sm rounded overflow-hidden shadow-lg" align="center">
-      <img src={products[0].cover_image} />
-      <h5 className="text-gray-900 text-xl font-medium mb-2">{products[0].book_title}</h5>
-      <p className="text-gray-700 text-base mb-4"><strong>{products[0].author}</strong></p>
-      <p className="text-gray-700 text-base mb-4">U.S. ${products[0].price} | ISBN {products[0].product_id}</p>
-      <p className="text-gray-700 text-base mb-4">{products[0].description}</p>
+      <img src={bookinfo.image} />
+      <h5 className="text-gray-900 text-xl font-medium mb-2">{bookinfo.title}</h5>
+      <p className="text-gray-700 text-base mb-4"><strong>{bookinfo.author}</strong></p>
+      <p className="text-gray-700 text-base mb-4">U.S. ${bookinfo.price} | ISBN {bookinfo.ISBN}</p>
+      <p className="text-gray-700 text-base mb-4">{bookinfo.description}</p>
+      <AddToCartButton ISBN={ISBN} price={bookinfo.price} title={title} author={author} image={image} quantity={quantity} setTotal={setTotal} total={total} purchase={purchase} setPurchase={setPurchase} setBookinfo={setBookinfo} />
+
     </div>
   );
 

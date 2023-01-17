@@ -11,6 +11,7 @@ const App = () => {
   const [products, setProducts] = useState([]);
   const [total, setTotal] = useState(0);
   const [purchase, setPurchase] = useState([]);
+  const [bookinfo, setBookinfo] = useState({});
 
   useEffect(() => {
     fetch("/api/books")
@@ -23,8 +24,8 @@ const App = () => {
       <Navbar total={total}/>
       <Routes>
       
-        <Route path='/' element={<ProductPage products={products} setTotal={setTotal} total={total} purchase={purchase} setPurchase={setPurchase}/>} />
-        <Route exact path='/:id' element={<BookInfo products={products} />} />
+        <Route path='/' element={<ProductPage products={products} setTotal={setTotal} total={total} purchase={purchase} setPurchase={setPurchase} setBookinfo={setBookinfo} />} />
+        <Route exact path='/:id' element={<BookInfo products={products} bookinfo={bookinfo} setTotal={setTotal} total={total} />} />
         <Route path='/checkout' element={<Checkout total={total} purchase={purchase}/>} />
       </Routes>
     </div>

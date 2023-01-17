@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom';
+import AddToCartButton from './AddToCartButton';
 
-function Card({ ISBN, price, title, author, image, quantity, description, setTotal, total, purchase, setPurchase }) {
-  const incrementTotal = () => {
-    setTotal(parseInt(total) + parseInt(price));
-    setPurchase([[title, author, image, description], ...purchase]);
+function Card({ ISBN, price, title, author, image, quantity, description, setTotal, total, purchase, setPurchase, setBookinfo }) {
+
+  const getBookDetails = () => {
+    setBookinfo({ISBN, price, title,  author, image, description});
   };
 
   return (
@@ -17,17 +18,11 @@ function Card({ ISBN, price, title, author, image, quantity, description, setTot
           <p className="text-gray-700 text-base mb-4">{author}</p>
           <p>U.S. ${price}</p>
           <br/>
-          <button
-            type="button"
-            onClick={incrementTotal}
-            className="inline-block px-6 py-2.5 mb-4 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-          >
-            Add to Cart
-          </button>
+          <AddToCartButton ISBN={ISBN} price={price} title={title} author={author} image={image} quantity={quantity} setTotal={setTotal} total={total} purchase={purchase} setPurchase={setPurchase} setBookinfo={setBookinfo} />
           <br/>
           <Link to={`/${ISBN}`}><button 
           type="button"
-          // onClick={redirect to product page}
+          onClick={getBookDetails}
           className="inline-block px-6 py-2.5 mb-4 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
           >
             Book Details
