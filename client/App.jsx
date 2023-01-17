@@ -1,31 +1,33 @@
-import React from 'react';
-import { HashRouter, Routes, Route } from 'react-router-dom';
-import NavBar from './components/Navbar';
-import HomePage from './components/Homepage';
-import ProductPage from './components/ProductPage';
+import React, { useState, useEffect } from 'react';
+import { Route, Routes } from 'react-router-dom';
+
+import Navbar from './components/Navbar';
 import Checkout from './components/Checkout';
-import Confirmation from './components/Confirm';
+import ProductPage from './components/ProductPage';
+import BookInfo from './components/BookInfo';
 
 
-// set up App functional component
 const App = () => {
+  const [products, setProducts] = useState([]);
+  const [total, setTotal] = useState(0);
+  const [purchase, setPurchase] = useState([]);
+  const [bookinfo, setBookinfo] = useState({});
 
-  // space for React Hooks
-
+  useEffect(() => {
+    fetch("/api/books")
+      .then(res => res.json())
+      .then(data => {console.log(data); setProducts(data);});
+  }, []);
+  
   return (
     <div className="App">
-      {/* <button>Test Button</button> */}
-      <HashRouter>
-
-        {/* <button>A button inside App.jsx</button> */}
-        <NavBar />
-        <Routes>
-          <Route path = '/' element={<HomePage />} />
-          <Route path = '/product' element={<ProductPage />} />
-          <Route path = '/checkout' element={<Checkout />} />
-          <Route path = '/confirmation' element={<Confirmation />} />
-        </Routes>
-      </HashRouter>
+      <Navbar total={total}/>
+      <Routes>
+      
+        <Route path='/' element={<ProductPage products={products} setTotal={setTotal} total={total} purchase={purchase} setPurchase={setPurchase} setBookinfo={setBookinfo} />} />
+        <Route exact path='/:id' element={<BookInfo products={products} bookinfo={bookinfo} setTotal={setTotal} total={total} />} />
+        <Route path='/checkout' element={<Checkout total={total} purchase={purchase}/>} />
+      </Routes>
     </div>
   );
 };
