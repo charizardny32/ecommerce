@@ -7,12 +7,15 @@ import CartCounter from "./CartCounter";
 const Navbar = ({ total }) => {
   return (
     <div
-      className="navBar container flex flex-wrap justify-between items-center mx-auto"
+      className="navBar container flex flex-row justify-between items-center mx-auto"
     >
+    <div>
       <Link to="/">
         <img src={logo} />
       </Link>
       
+    </div>
+    <div>
       <Link to="/checkout">
       
       {/* <button 
@@ -25,6 +28,8 @@ const Navbar = ({ total }) => {
         <img src={cart_icon} />
         <CartCounter total={total} />
       </Link>
+
+    </div>  
     </div>
   );
 };

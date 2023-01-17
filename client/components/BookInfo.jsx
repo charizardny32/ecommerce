@@ -17,14 +17,15 @@ const BookInfo = (props) => {
   // }, []);
 
   return (
-    <div className="max-w-sm rounded overflow-hidden shadow-lg" align="center">
+    <div className="block mx-auto my-8 w-2/4">
+    <div className="max-w-sm rounded overflow-hidden shadow-lg p-4" align="center">
       <img src={bookinfo.image} />
       <h5 className="text-gray-900 text-xl font-medium mb-2">{bookinfo.title}</h5>
       <p className="text-gray-700 text-base mb-4"><strong>{bookinfo.author}</strong></p>
       <p className="text-gray-700 text-base mb-4">U.S. ${bookinfo.price} | ISBN {bookinfo.ISBN}</p>
       <p className="text-gray-700 text-base mb-4">{bookinfo.description}</p>
       <AddToCartButton ISBN={ISBN} price={bookinfo.price} title={title} author={author} image={image} quantity={quantity} setTotal={setTotal} total={total} purchase={purchase} setPurchase={setPurchase} setBookinfo={setBookinfo} />
-
+    </div>
     </div>
   );
 
