@@ -1,37 +1,26 @@
 import { PayPalButtons } from "@paypal/react-paypal-js";
+import RemoveFromCartButton from './RemoveFromCartButton';
 
-const Checkout = ({ total, purchase }) => {
+const Checkout = ({ total, purchase, setTotal, setPurchase }) => {
   const style = { color: "silver", shape: "pill" };
-  console.log('purchase from Checkout ', purchase);
+  //console.log('purchase from Checkout ', purchase);
   
   const item_array = [];
   purchase.forEach(book => {
-    
     item_array.push(<div key={book}>
         <p>Title: {book[0]} | Author: {book[1]}</p>
         <img src={book[2]}/>
-    </div>)
-    
+        <RemoveFromCartButton total={total} purchase={purchase} setTotal={setTotal} book={book} setPurchase={setPurchase}/>
+    </div>) 
   })
   
-
   return (
     <div className="flex-col justify-center">
       <p>Total: ${total}</p>
       {item_array}
-      {/* <p>Your Purchase:</p>
-      <p>Title: {purchase[0][0]}</p>
-      <p>Author: {purchase[0][1]}</p>
-      <img src={purchase[0][2]} />
-      <p>Description: {purchase[0][3]}</p>
-      <br/>
-      <p>Title: {purchase[1][0]}</p>
-      <p>Author: {purchase[1][1]}</p>
-      <img src={purchase[1][2]} />
-      <p>Description: {purchase[1][3]}</p> */}
-      
-      
+
       <div>
+        <h4>Check out with</h4>
         <PayPalButtons
           style={style}
           fundingSource="paypal"

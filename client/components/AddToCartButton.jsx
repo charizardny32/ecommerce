@@ -5,7 +5,7 @@ function AddToCartButton ({ ISBN, title, author, price, image, quantity, descrip
   //console.log('price from AddToCart component', price);
   const incrementTotal = () => {
     setTotal(parseInt(total) + parseInt(price));
-    setPurchase([[title, author, image, description], ...purchase]);
+    setPurchase([[title, author, image, description, price], ...purchase]);
   };
   return (
   <button
